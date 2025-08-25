@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en" class="dark" data-theme="violet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReelStar: Private Investment Memorandum</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;
+
+        @layer base {
+          :root, [data-theme="violet"] {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --card: 0 0% 100%;
+            --card-foreground: 222.2 84% 4.9%;
+            --popover: 0 0% 100%;
+            --popover-foreground: 222.2 84% 4.9%;
+            --primary: 248 89% 60%;
+            --primary-foreground: 0 0% 98%;
+            --secondary: 210 40% 96.1%;
+            --secondary-foreground: 222.2 47.4% 11.2%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --accent: 248 95% 65%;
+            --accent-foreground: 0 0% 98%;
+            --destructive: 0 84.2% 60.2%;
+            --destructive-foreground: 0 0% 98%;
+            --border: 214.3 31.8% 91.4%;
+            --input: 214.3 31.8% 91.4%;
+            --ring: 248 89% 60%;
+            --radius: 0.75rem;
+          }
+        
+          .dark, :root.dark, [data-theme="violet"].dark {
+            --background: 240 10% 4%;
+            --foreground: 0 0% 98%;
+            --card: 240 10% 10%;
+            --card-foreground: 0 0% 98%;
+            --popover: 240 10% 4%;
+            --popover-foreground: 0 0% 98%;
+            --primary: 248 89% 60%;
+            --primary-foreground: 0 0% 98%;
+            --secondary: 240 5% 16%;
+            --secondary-foreground: 0 0% 98%;
+            --muted: 240 5% 16%;
+            --muted-foreground: 240 5% 65%;
+            --accent: 248 95% 65%;
+            --accent-foreground: 0 0% 98%;
+            --destructive: 0 62.8% 30.6%;
+            --destructive-foreground: 0 0% 98%;
+            --border: 240 5% 20%;
+            --input: 240 5% 20%;
+            --ring: 248 89% 60%;
+            --radius: 0.75rem;
+          }
+
+          [data-theme="blue"] {
+            --primary: 221.2 83.2% 53.3%;
+            --primary-foreground: 210 40% 98%;
+            --accent: 217.2 91.2% 59.8%;
+          }
+          [data-theme="green"] {
+            --primary: 142.1 76.2% 36.3%;
+            --primary-foreground: 0 0% 98%;
+            --accent: 142.1 70.6% 45.3%;
+          }
+          [data-theme="orange"] {
+            --primary: 24.6 95% 53.1%;
+            --primary-foreground: 0 0% 98%;
+            --accent: 20.5 90.2% 48.2%;
+          }
+          [data-theme="rose"] {
+            --primary: 346.8 77.2% 49.8%;
+            --primary-foreground: 0 0% 98%;
+            --accent: 346.8 77.2% 49.8%;
+          }
+        }
+
+        @layer base {
+          * {
+            border-color: hsl(var(--border));
+          }
+          body {
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 100 100'%3e%3cg fill='hsl(var(--primary))' opacity='0.05'%3e%3cg transform='translate(50 50) scale(0.45) translate(-50 -50)'%3e%3cpath d='M50,0 L60,40 L100,50 L60,60 L50,100 L40,60 L0,50 L40,40 Z' /%3e%3cpath d='M50,20 L80,50 L50,80 L20,50 Z' /%3e%3c/g%3e%3c/g%3e%3c/svg%3e");
+            padding-top: env(safe-area-inset-top);
+            padding-right: env(safe-area-inset-right);
+            padding-left: env(safe-area-inset-left);
+          }
+          
+          .dark h1,
+          .dark h2,
+          .dark h3 {
+            color: hsl(var(--foreground));
+          }
+          .text-logo {
+            color: hsl(var(--accent));
+          }
+          .dark .text-logo {
+            color: hsl(var(--accent));
+          }
+
+          .dark body {
+            background-image: radial-gradient(circle at top right, hsl(var(--primary) / 0.15), transparent 40%), radial-gradient(circle at bottom left, hsl(var(--accent) / 0.1), transparent 50%), url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 100 100'%3e%3cg fill='white' opacity='0.03'%3e%3cg transform='translate(50 50) scale(0.45) translate(-50 -50)'%3e%3cpath d='M50,0 L60,40 L100,50 L60,60 L50,100 L40,60 L0,50 L40,40 Z' /%3e%3cpath d='M50,20 L80,50 L50,80 L20,50 Z' /%3e%3c/g%3e%3c/g%3e%3c/svg%3e");
+            background-color: #050505;
+            background-attachment: fixed;
+          }
+        }
+
+        .text-primary-outline {
+            -webkit-text-stroke: 1px hsl(var(--primary));
+            -webkit-text-fill-color: transparent;
+        }
+        .dark .text-primary-outline {
+             -webkit-text-fill-color: hsl(var(--background));
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .font-headline { font-family: 'Poppins', sans-serif; }
+        .font-sans { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: monospace; }
+        
+        .text-glow {
+            text-shadow: 0 0 8px hsl(var(--primary) / 0.5), 0 0 20px hsl(var(--primary) / 0.3);
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        body: ['Inter', 'sans-serif'],
+                        headline: ['Poppins', 'sans-serif'],
+                        code: ['monospace'],
+                    },
+                    colors: {
+                        background: 'hsl(var(--background))',
+                        foreground: 'hsl(var(--foreground))',
+                        card: {
+                            DEFAULT: 'hsl(var(--card))',
+                            foreground: 'hsl(var(--card-foreground))',
+                        },
+                        popover: {
+                            DEFAULT: 'hsl(var(--popover))',
+                            foreground: 'hsl(var(--popover-foreground))',
+                        },
+                        primary: {
+                            DEFAULT: 'hsl(var(--primary))',
+                            foreground: 'hsl(var(--primary-foreground))',
+                        },
+                        secondary: {
+                            DEFAULT: 'hsl(var(--secondary))',
+                            foreground: 'hsl(var(--secondary-foreground))',
+                        },
+                        muted: {
+                            DEFAULT: 'hsl(var(--muted))',
+                            foreground: 'hsl(var(--muted-foreground))',
+                        },
+                        accent: {
+                            DEFAULT: 'hsl(var(--accent))',
+                            foreground: 'hsl(var(--accent-foreground))',
+                        },
+                        destructive: {
+                            DEFAULT: 'hsl(var(--destructive))',
+                            foreground: 'hsl(var(--destructive-foreground))',
+                        },
+                        border: 'hsl(var(--border))',
+                        input: 'hsl(var(--input))',
+                        ring: 'hsl(var(--ring))',
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-foreground antialiased min-h-screen">
+    <div class="max-w-4xl mx-auto p-4 sm:p-8 space-y-6 font-sans">
+        <div id="memorandum-content" class="space-y-6">
+            <div data-section="true" id="pdf-header" class="scroll-mt-20 rounded-lg border bg-card text-card-foreground shadow-sm bg-card/70 backdrop-blur-sm border-primary/20">
+                <div class="flex flex-col items-center justify-center min-h-[50vh] p-8 text-center">
+                    <div class="flex items-center justify-center lg:justify-start gap-2 mb-8">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" class="w-24 h-24">
+                          <defs>
+                            <radialGradient id="rstrMainGradient-1" cx="50%" cy="50%" r="50%" fx="30%" fy="30%">
+                              <stop offset="0%" stop-color="hsl(var(--accent))" stop-opacity="0.8"></stop>
+                              <stop offset="70%" stop-color="hsl(var(--primary))"></stop>
+                              <stop offset="100%" stop-color="hsl(274 100% 5%)"></stop>
+                            </radialGradient>
+                            <radialGradient id="rstrStarGradient-1" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="hsl(var(--primary-foreground))" stop-opacity="1"></stop>
+                                <stop offset="75%" stop-color="hsl(var(--primary-foreground))" stop-opacity="0.8"></stop>
+                                <stop offset="100%" stop-color="hsl(var(--primary-foreground))" stop-opacity="0.6"></stop>
+                            </radialGradient>
+                          </defs>
+                          <g>
+                            <circle cx="50" cy="50" r="48" fill="url(#rstrMainGradient-1)"></circle>
+                            <circle cx="50" cy="50" r="42" fill="none" stroke="hsl(var(--accent))" stroke-opacity="0.3" stroke-width="1.5"></circle>
+                            <g transform="translate(50 50) scale(0.45) translate(-50 -50)">
+                                 <path d="M50,0 L60,40 L100,50 L60,60 L50,100 L40,60 L0,50 L40,40 Z" fill="url(#rstrStarGradient-1)" stroke="hsl(var(--primary-foreground))" stroke-opacity="0.5" stroke-width="1" stroke-linejoin="round"></path>
+                                 <path d="M50,20 L80,50 L50,80 L20,50 Z" fill="url(#rstrStarGradient-1)" stroke="hsl(var(--primary-foreground))" stroke-width="1.5" stroke-linejoin="round"></path>
+                            </g>
+                            <circle cx="50" cy="50" r="48.5" fill="none" stroke="#FF69B4" stroke-width="1"></circle>
+                            <circle cx="50" cy="50" r="47" fill="none" stroke="#FFFF00" stroke-width="1"></circle>
+                            <path d="M 15 25 A 50 50 0 0 1 85 25" stroke="hsl(var(--primary-foreground))" stroke-width="1.5" stroke-opacity="0.5" fill="none"></path>
+                          </g>
+                        </svg>
+                        <div class="flex flex-col items-center">
+                            <h1 class="text-4xl sm:text-5xl font-headline font-black">
+                                <span class="flex items-baseline text-primary-outline"><span>ReelStar</span><span class="text-[0.375em] ml-px">&copy;</span></span>
+                            </h1>
+                            <span class="block text-xs text-muted-foreground tracking-tight -mt-2">Where Influencers Reign</span>
+                        </div>
+                    </div>
+                    <h1 class="text-4xl font-headline font-bold text-center text-muted-foreground">Private Investment Memorandum</h1>
+                    <p class="text-center text-muted-foreground text-sm mt-2">This is a tokenized influence social ai engine. Purposely built for the influencer-content creator of tomorrow.</p>
+                    <p class="mt-4 text-xs text-muted-foreground/80 text-center">Highly Confidential</p>
+                    <div class="mt-2 text-xs text-muted-foreground/80 text-center">
+                        <p>Prepared by: Angelo Ioannou, Developer, Architect, Founder of ReelStar</p>
+                        <p>Entity: Affinity Magnate, Inc. / Ai NFT Lab</p>
+                    </div>
+                    <p class="text-xs text-muted-foreground/80 text-center">Date: July 21, 2025</p>
+                </div>
+            </div>
+            
+            <div data-section="true" id="table-of-contents" class="scroll-mt-20 rounded-lg border bg-card text-card-foreground shadow-sm bg-card/70 backdrop-blur-sm border-primary/20">
+                <div class="flex flex-col space-y-1.5 p-6 text-center">
+                    <h3 class="text-2xl font-semibold leading-none tracking-tight font-sans">Investor Memorandum: Table of Contents</h3>
+                    <p class="text-sm text-muted-foreground">Navigate directly to key sections of the memorandum.</p>
+                </div>
+                <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    <a href="#market-pulse" data-section-id="market-pulse" class="font-sans text-foreground hover:underline underline-offset-4">The AI Market Pulse</a>
+                    <a href="#hyper-display-postcard" data-section-id="hyper-display-postcard" class="font-sans text-foreground hover:underline underline-offset-4">The Sentient Feed</a>
+                    <a href="#comparative-analysis" data-section-id="comparative-analysis" class="font-sans text-foreground hover:underline underline-offset-4">ReelStar vs. The Legacy Model</a>
+                    <a href="#architecture" data-section-id="architecture" class="font-sans text-foreground hover:underline underline-offset-4">ReelStar Architecture</a>
+                    <a href="#executive-summary-main" data-section-id="executive-summary-main" class="font-sans text-foreground hover:underline underline-offset-4">Executive Summary</a>
+                    <a href="#market-position" data-section-id="market-position" class="font-sans text-foreground hover:underline underline-offset-4">Market Position: The Stand-Alone Effect</a>
+                    <a href="#security" data-section-id="security" class="font-sans text-foreground hover:underline underline-offset-4">The ReelStar Fortress</a>
+                    <a href="#valuation" data-section-id="valuation" class="font-sans text-foreground hover:underline underline-offset-4">Valuation Justification</a>
+                    <a href="#roadmap" data-section-id="roadmap" class="font-sans text-foreground hover:underline underline-offset-4">Global Launch Roadmap</a>
+                    <a href="#budget-allocation" data-section-id="budget-allocation" class="font-sans text-foreground hover:underline underline-offset-4">Budget Allocation</a>
+                    <a href="#financials" data-section-id="financials" class="font-sans text-foreground hover:underline underline-offset-4">Financial Projections</a>
+                    <a href="#tokenomics" data-section-id="tokenomics" class="font-sans text-foreground hover:underline underline-offset-4">Apex Asset: Tokenized Influence</a>
+                    <a href="#live-rollout" data-section-id="live-rollout" class="font-sans text-foreground hover:underline underline-offset-4">The 9-Month Plan</a>
+                    <a href="#return-profile" data-section-id="return-profile" class="font-sans text-foreground hover:underline underline-offset-4">Generational Return Profile</a>
+                    <a href="#investment-paths" data-section-id="investment-paths" class="font-sans text-foreground hover:underline underline-offset-4">Investment Pathways</a>
+                    <a href="#core-team" data-section-id="core-team" class="font-sans text-foreground hover:underline underline-offset-4">The Core Team</a>
+                    <a href="#founder-bio" data-section-id="founder-bio" class="font-sans text-foreground hover:underline underline-offset-4">Founder Bio</a>
+                    <a href="#contact" data-section-id="contact" class="font-sans text-foreground hover:underline underline-offset-4">Contact &amp; Next Steps</a>
+                </div>
+            </div>
+            
+            <div class="rounded-lg border bg-card text-card-foreground shadow-sm scroll-mt-20 bg-card/70 backdrop-blur-sm border-primary/20 text-foreground p-8" data-section="true" id="report-from-the-future">
+                <div class="flex flex-col space-y-1.5 p-6 text-center">
+                    <h3 class="text-4xl font-headline font-bold text-primary text-glow">The Year is 2030. What Did You Miss?</h3>
+                    <p class="text-sm text-neutral-400">A Report from the Future on the State of the AI-Native Creator Economy.</p>
+                </div>
+                <div class="p-6 pt-0 mt-6 space-y-6 text-lg max-w-3xl mx-auto">
+                    <ul class="list-disc list-outside space-y-4 pl-5">
+                        <li><strong>The Sentient Feed™</strong>, once a theoretical concept, now drives over <strong>80% of digital engagement</strong>, with its <strong>Quantum Loop™</strong> interface becoming the new standard for interaction.</li>
+                        <li><strong>Tokenized Influence</strong>, a new asset class created by ReelStar, has surpassed early-stage startup equity as the dominant high-growth investment for retail and institutional capital.</li>
+                        <li>ReelStar's <strong>Hyper-Tokenized GDP Social AI Engine</strong> has become the undisputed OS for the new creator economy, powering <strong>1 in every 3</strong> decentralized platforms.</li>
+                    </ul>
+                    <p class="text-center font-bold text-xl pt-6 text-neutral-300">If you're reading this in 2025, this was the moment to act.</p>
+                    <p class="text-center text-2xl font-bold font-headline pt-4 text-neutral-200">In a world of overfished platforms, we built the ocean.</p>
+                </div>
+            </div>
+
+            <!-- All other sections from whitepaper/page.tsx will be injected here -->
+            <div data-section="true" id="executive-summary" class="scroll-mt-20 rounded-lg border bg-card text-card-foreground shadow-sm bg-card/70 backdrop-blur-sm border-primary/20 p-8">
+                <div class="space-y-8">
+                    <p class="text-center text-muted-foreground italic">How one simple yet elegant formula can create a $100B start up in 5 years.</p>
+                    <p class="font-mono text-xl sm:text-2xl text-foreground tracking-wider whitespace-nowrap text-center">
+                        Φ_R = (GDP_R * V_m) * (AI * T)<sup>k</sup> * N(t) * U_RSTR
+                    </p>
+
+                    <div class="border-t border-border/50 pt-8 space-y-3 font-mono text-sm text-foreground/80 max-w-lg mx-auto">
+                       <div class="grid grid-cols-[auto,1fr] gap-x-4">
+                            <strong class="text-foreground text-right">Φ_R:</strong>
+                            <span>Total Value of the ReelStar Ecosystem.</span>
+                       </div>
+                       <div class="grid grid-cols-[auto,1fr] gap-x-4">
+                            <strong class="text-foreground text-right">GDP_R:</strong>
+                            <span>Gross Domestic Product of ReelStar (Total economic activity).</span>
+                       </div>
+                        <div class="grid grid-cols-[auto,1fr] gap-x-4">
+                            <strong class="text-foreground text-right">V_m:</strong>
+                            <span>Velocity of Money (RSTR circulation speed).</span>
+                       </div>
+                        <div class="grid grid-cols-[auto,1fr] gap-x-4">
+                            <strong class="text-foreground text-right">(AI * T)<sup>k</sup>:</strong>
+                            <span>The exponential power of our AI core and Technology stack.</span>
+                       </div>
+                       <div class="grid grid-cols-[auto,1fr] gap-x-4">
+                            <strong class="text-foreground text-right">N(t):</strong>
+                            <span>Viral network effects over time.</span>
+                       </div>
+                       <div class="grid grid-cols-[auto,1fr] gap-x-4">
+                            <strong class="text-foreground text-right">U_RSTR:</strong>
+                            <span>The broad utility and integration of the RSTR token.</span>
+                       </div>
+                    </div>
+                
+                    <blockquote class="text-base italic text-muted-foreground max-w-lg mx-auto text-center pt-8">
+                        "It's a given that great ambition faces great resistance. If it does not break you, you can go on to achieve extraordinary things."
+                        <footer class="mt-2 text-sm not-italic text-muted-foreground/80">- Angelo Ioannou, Founder of ReelStar</footer>
+                    </blockquote>
+                </div>
+            </div>
+            <div data-section="true" id="quote-1" class="scroll-mt-20 rounded-lg border bg-card text-card-foreground shadow-sm bg-card/70 backdrop-blur-sm border-primary/20 text-center">
+                <div class="p-6">
+                    <blockquote class="text-lg italic text-foreground/90 font-sans">
+                        "ReelStar is not a management tool. It's a fully autonomous, AI-native ecosystem built for the rise of the Social AI Master, powered by <strong>The Sentient Feed™</strong> and its revolutionary <strong>Quantum Loop™ interface</strong>. This is not support software; this is a weapon. Designed to amplify talent, ambition, creativity, and brand value while eliminating friction, reducing exposure risk, and accelerating monetization through seamless high-stakes brand deals and intelligent content orchestration. ReelStar transforms every user into a refined force in content creation, dynamic branding, and tokenized influence—the apex asset class of the digital era. With its mining core, influencer engine, and gravity-like network effect, ReelStar isn't just keeping up with the future—it's shaping it. In the decade ahead, Social AI Influencers won't just trend—they'll dominate. And ReelStar is their launchpad."
+                    </blockquote>
+                </div>
+            </div>
+            <div data-section="true" id="market-pulse" class="scroll-mt-20 rounded-lg border bg-card text-card-foreground shadow-sm bg-card/70 backdrop-blur-sm border-primary/20">
+                <div class="flex flex-col space-y-1.5 p-6">
+                    <h3 class="text-2xl font-semibold leading-none tracking-tight font-sans">The AI Market Pulse</h3>
+                </div>
+                <div class="p-6 pt-0 space-y-4 text-lg text-foreground/80 font-sans">
+                    <p>This week’s pulse from across the AI landscape captures a pivotal moment—equal parts exhilarating and disorienting. We’re witnessing a phase shift: the exponential curve of AI-driven innovation colliding with the linear structures of venture capital, institutional pacing, and legacy go-to-market strategies.</p>
+                    <blockquote class="border-l-4 border-primary pl-4 italic text-foreground/90">
+                        “Everything now is just so much faster in the AI age.” - Jason Lemkin
+                    </blockquote>
+                    <p>And he’s right. From Cursor’s sprint from concept to revenue in mere months, to Anthropic reaching a $4B run rate backed by OpenAI’s $58B capital raise, we're in a market where time has compressed, and scale has become non-optional. This isn’t traditional SaaS. This is AI hypergrowth running on an entirely new operating system.</p>
+                    <p>In this new environment, burn rate is no longer a warning sign—it’s strategic. VCs are embracing "parallel scaling," where capital and revenue move in lockstep to win winner-takes-all markets. The rise of ultra-unicorns—startups valued at $5B+—shows the capital concentration flowing into breakout platforms that can define new categories.</p>
+                    <p>ReelStar fits squarely into this emerging class. As a fully operational AI-powered Social Media OS with a 24-month market head start, ReelStar isn’t just riding this wave; it’s helping define it. With a $1B raise underway, ReelStar is positioned not as a speculative bet but as a defensible, scalable, and category-creating asset in one of the most sought-after verticals in AI: the convergence of content, creator tools, and intelligent monetization.</p>
+                    <p>In today’s climate, capital flows quickly to those with infrastructure, product-market readiness, and exponential upside. ReelStar checks all three boxes. Given the current velocity of capital into elite AI companies, we anticipate this raise could move swiftly, especially as leading firms look to anchor deals in differentiated platforms with billion-dollar potential.</p>
+                </div>
+            </div>
+            <div data-section="true" id="hyper-display-postcard" class="scroll-mt-20 rounded-lg border bg-card text-card-foreground shadow-sm bg-card/70 backdrop-blur-sm border-primary/20">
+                <div class="flex flex-col space-y-1.5 p-6">
+                    <h3 class="text-2xl font-semibold leading-none tracking-tight font-sans">The Future of Social AI Feeds: The Sentient Feed</h3>
+                    <p class="text-sm text-muted-foreground">Forget static scrolls and algorithmic guesswork. The next evolution of feed engagement is not what is shown, but how and why it shows up—creating a dynamic, emotionally intelligent, purpose-driven feed powered by real-time AI co-agency.</p>
+                </div>
+                <div class="p-6 pt-0 space-y-6 text-lg text-foreground/80 font-sans">
+                    <div class="text-center p-6 bg-muted/50 rounded-lg border">
+                        <h3 class="text-2xl font-bold font-headline text-primary">Core Concept: The Sentient Feed Engine™</h3>
+                        <p class="mt-2 text-muted-foreground">A smart feed that evolves with you, not at you.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="font-semibold text-xl text-foreground">What makes it revolutionary:</h4>
+                        <ul class="list-disc list-inside space-y-3 pl-4 text-base">
+                            <li><strong>Emotionally Aware:</strong> Reads subtle cues (voice, expressions, biometrics) to tailor content tone, not just content topic.</li>
+                            <li><strong>Dual-Mind Mode:</strong> Allows the user and their personal AI assistant to “co-create” what appears in the feed.</li>
+                            <li><strong>Intention Input Layer:</strong> Feed responds to your goal for the session: inspire me, help me create, research this topic, connect me, or let me chill.</li>
+                            <li><strong>Temporal Context Awareness:</strong> Recognizes time of day, mood trends, and creative flow patterns to serve relevant micro-content (eg: morning = motivational bursts, night = intimate conversations).</li>
+                        </ul>
+                    </div>
+                    <div class="border-t pt-6 space-y-4">
+                        <h4 class="font-semibold text-xl text-foreground">Revolutionary Feature: The Quantum Loop Postcard</h4>
+                         <p class="text-base">A total reimagining of the traditional Instagram-style post card.</p>
+                        <div class="p-6 rounded-lg bg-background/50 border flex flex-col md:flex-row items-center gap-6">
+                            <div class="flex-shrink-0">
+                                <div class="relative w-24 h-24">
+                                    <svg class="absolute inset-0 text-primary/20 animate-spin" style="animation-duration: 10s;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-dasharray="25 100"></circle></svg>
+                                    <svg class="absolute inset-0 text-primary/30 animate-spin" style="animation-duration: 15s; animation-direction: reverse;" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" stroke-dasharray="25 100"></circle></svg>
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <div class="w-12 h-12 rounded-full bg-primary/20 shadow-lg shadow-primary/30 flex items-center justify-center animate-pulse">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-primary"><path d="m12 3-1.41 1.41L16.17 10H4v4h12.17l-5.58 5.59L12 21l8-8-8-8z"></path></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-lg text-foreground">Core Icon: The Loop Orb</h5>
+                                <p class="text-sm text-muted-foreground">A glowing, morphing orb that sits subtly in the corner of every post, pulsing with possibilities.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3 text-base">
+                            <div class="flex items-start gap-4"><strong class="font-mono text-primary w-24 shrink-0">Tap & Hold:</strong><span>Reveals alternate AI-generated versions of the post (emotionally varied responses).</span></div>
+                            <div class="flex items-start gap-4"><strong class="font-mono text-primary w-24 shrink-0">Swipe Left:</strong><span>Opens a “MetaThread”: a parallel narrative path of related content, people, or conversations.</span></div>
+                            <div class="flex items-start gap-4"><strong class="font-mono text-primary w-24 shrink-0">Swipe Up:</strong><span>Triggers an Instant Collab Portal with the creator, AI-to-AI or human-to-human.</span></div>
+                            <div class="flex items-start gap-4"><strong class="font-mono text-primary w-24 shrink-0">Double Tap:</strong><span>Summons the AI co-pilot to remix or extend the post for your own purposes (clip, theme, story).</span></div>
+                            <div class="flex items-start gap-4"><strong class="font-mono text-primary w-24 shrink-0">Glows Gold:</strong><span>AI detects an “aha moment” from you (facial expression or voice) and saves it in your Inspiration Vault.</span></div>
+                        </div>
+                    </div>
+                     <div class="border-t pt-6 space-y-4">
+                        <h4 class="font-semibold text-xl text-foreground">Support Features That Make It Magical:</h4>
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-base">
+                            <div class="flex items-start gap-4 p-4 rounded-lg bg-background/50 border border-border/50">
+                                <div class="p-2 bg-primary/10 rounded-lg mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary"><path d="M12 2.69l.346.666L19.5 15.34l-1.888 3.32L12 21l-5.612-2.34-1.888-3.32L11.654 3.356A2 2 0 0 1 12 2.69z"></path><path d="M12 21V3"></path><path d="m3.27 10 8.73 3.5 8.73-3.5"></path><path d="m3.27 10 8.73 11 8.73-11"></path></svg></div>
+                                <div>
+                                    <h4 class="font-semibold text-foreground">Mood Mapping</h4>
+                                    <p class="text-muted-foreground text-sm">Your digital aura influences the aesthetic of the feed.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 rounded-lg bg-background/50 border border-border/50">
+                                <div class="p-2 bg-primary/10 rounded-lg mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary"><path d="M15.5 2.83a1 1 0 0 1 1.07 1.07L16 16.97a1 1 0 0 1-1.07 1.07l-9.06-2.58a1 1 0 0 1-.5-1.57l9.06-9.94a1 1 0 0 1 1.57.5z"></path><path d="m21.5 2.5-9.06 9.94"></path><path d="m9.09 11.55 2.86-2.86"></path></svg></div>
+                                <div>
+                                    <h4 class="font-semibold text-foreground">Live Remix Feed</h4>
+                                    <p class="text-muted-foreground text-sm">Real-time editing of the feed with you, not for you.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 rounded-lg bg-background/50 border border-border/50">
+                                <div class="p-2 bg-primary/10 rounded-lg mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.72"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.72-1.72"></path></svg></div>
+                                <div>
+                                    <h4 class="font-semibold text-foreground">AI Companion Feed</h4>
+                                    <p class="text-muted-foreground text-sm">A digital twin’s curated persona reflecting what you would post if more active.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 rounded-lg bg-background/50 border border-border/50">
+                                <div class="p-2 bg-primary/10 rounded-lg mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg></div>
+                                <div>
+                                    <h4 class="font-semibold text-foreground">Reality Fusion Layer</h4>
+                                    <p class="text-muted-foreground text-sm">With one tap, convert any post into a metaverse experience (AR/VR/PWA).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border-t pt-6 space-y-4">
+                        <h4 class="font-semibold text-xl text-foreground">Bonus Engagement Loops:</h4>
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-base">
+                            <div class="flex items-start gap-4 p-4 rounded-lg bg-background/50 border border-border/50">
+                                <div class="p-2 bg-primary/10 rounded-lg mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg></div>
+                                <div>
+                                    <h4 class="font-semibold text-foreground">Emotion Tokenization</h4>
+                                    <p class="text-muted-foreground text-sm">React with empathy types (e.g., 'resonated', 'inspired'), training the AI to understand emotional gravity.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 rounded-lg bg-background/50 border border-border/50">
+                                <div class="p-2 bg-primary/10 rounded-lg mt-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-primary"><path d="M12 1a2.828 2.828 0 0 0-2 2 2.828 2.828 0 0 0-2 2 2.828 2.828 0 0 0-2 2 2.828 2.828 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2.828 2.828 0 0 0-2-2 2.828 2.828 0 0 0-2-2 2.828 2.828 0 0 0-2-2 2.828 2.828 0 0 0-2-2z"></path></svg></div>
+                                <div>
+                                    <h4 class="font-semibold text-foreground">Dream Feed Mode</h4>
+                                    <p class="text-muted-foreground text-sm">A surreal, AI-constructed alternate feed blending your subconscious browsing habits and dreams into abstract, idea-stimulating visuals.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="border-t pt-6">
+                        <h4 class="font-semibold text-xl text-foreground">Summary:</h4>
+                        <p class="mt-2 text-base">ReelStar's opportunity lies in pioneering a feed that isn’t “curated by AI” but co-created with AI—a deeply immersive, intent-driven interface with semantic layers of expression. The Loop Orb becomes not just an interaction point, but a gateway to your augmented creative self.</p>
+                    </div>
+                </div>
+            </div>
+            <div data-section="true" id="comparative-analysis" class="scroll-mt-20 rounded-lg border bg-card text-card-foreground shadow-sm bg-card/70 backdrop-blur-sm border-primary/20">
+                <div class="flex flex-col space-y-1.5 p-6">
+                    <h3 class="text-2xl font-semibold leading-none tracking-tight font-sans">The Valuation Formula: ReelStar vs. The Legacy Model</h3>
+                    <p class="text-sm text-muted-foreground">A comparative analysis of value creation between ReelStar and platforms like Instagram.</p>
+                </div>
+                <div class="p-6 pt-0 space-y-6 text-lg text-foreground/80 font-sans">
+                     <p class="font-mono text-xl sm:text-2xl text-foreground tracking-wider whitespace-nowrap text-center">
+                        Φ_R = (GDP_R * V_m) * (AI * T)<sup>k</sup> * N(t) * U_RSTR
+                    </p>
+                    <div class="w-full my-6">
+                        <svg viewBox="0 0 100 60" class="w-full">
+                            <defs>
+                                <pattern id="pattern-comp" patternUnits="userSpaceOnUse" width="10" height="10">
+                                    <circle cx="1" cy="1" r="0.5" class="fill-primary/50" />
+                                    <circle cx="6" cy="7" r="0.4" class="fill-primary/40" />
+                                </pattern>
+                            </defs>
+                            <g>
+                                <circle cx="35" cy="30" r="28" class="fill-primary/10" />
+                                <circle cx="35" cy="30" r="28" fill="url(#pattern-comp)" />
+                                <circle cx="35" cy="30" r="28" class="stroke-primary/50 fill-none" stroke-width="0.5" />
+                                <text x="35" y="28" text-anchor="middle" class="font-bold text-[5px] fill-foreground">ReelStar</text>
+                                <text x="35" y="35" text-anchor="middle" class="font-mono text-[3px] fill-muted-foreground">5-Year Potential</text>
+                                <text x="35" y="41" text-anchor="middle" class="font-bold text-[6px] fill-primary">$100B+</text>
+                            </g>
+                            <g>
+                                <circle cx="85" cy="45" r="13" class="fill-destructive/10" />
+                                <circle cx="85" cy="45" r="13" fill="url(#pattern-comp)" class="opacity-30" />
+                                <circle cx="85" cy="45" r="13" class="stroke-destructive/50 fill-none" stroke-width="0.3" />
+                                <text x="85" y="44" text-anchor="middle" class="font-bold text-[3px] fill-foreground">Instagram</text>
+                                <text x="85" y="48" text-anchor="middle" class="font-mono text-[2px] fill-muted-foreground">Current Value</text>
+                                 <text x="85" y="52" text-anchor="middle" class="font-bold text-[3px] fill-destructive">$1T+</text>
+                            </g>
+                            <line x1="63" y1="30" x2="72" y2="45" class="stroke-border" stroke-width="0.2" stroke-dasharray="1 1"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-xl text-foreground">The Analysis: A Tale of Two Economies</h3>
+                        <p class="mt-2 text-base">The formula above quantifies the total value of an ecosystem (Φ). When applied to Instagram and ReelStar, it reveals a fundamental difference in their economic architecture and, consequently, their ultimate potential.</p>
+                        
+                        <div class="mt-4 space-y-4 text-base border-l-4 border-destructive/50 pl-4">
+                            <h4 class="font-semibold text-xl text-destructive">Instagram's Model: The Illusion of Scale</h4>
+                            <p>Instagram's valuation is almost entirely dependent on one variable: **N(t)**, the Network Effect. Its value is derived from its massive user base and the ad revenue that base generates. The other variables in our formula are effectively zero. There is no internal GDP, no velocity of a native currency, no deep utility token, and its technology (T), while robust, is not an exponential force multiplier in the same way as our generative AI.</p>
+                            <p class="font-semibold">Essentially, Instagram's formula is: <span class="font-mono">Φ_Insta ≈ N(t)</span>. It's a one-dimensional economy built on attention.</p>
+                        </div>
+                        
+                        <div class="mt-6 space-y-4 text-base border-l-4 border-primary pl-4">
+                            <h4 class="font-semibold text-xl text-primary">ReelStar's Model: The Multi-Layered Value Engine</h4>
+                            <p>ReelStar, by contrast, is engineered to maximize every variable in the equation, creating a compounding effect that legacy platforms cannot replicate:</p>
+                            <ul class="list-disc list-inside space-y-2 pl-4 mt-2">
+                                <li><strong class="text-foreground/90">GDP_R * V_m:</strong> We have a thriving internal economy. Every brand deal, subscription, and tip contributes to a real Gross Domestic Product. The RSTR token circulates with high velocity, amplifying this economic power.</li>
+                                <li><strong class="text-foreground/90">(AI * T)<sup>k</sup>:</strong> Our core technology is an exponential force multiplier. The AI engine doesn't just support the network; it actively scales content creation, quality, and monetization opportunities for every user, making the entire ecosystem more valuable.</li>
+                                <li><strong class="text-foreground/90">N(t):</strong> Our network effects are supercharged. Users join not just to connect, but to create, earn, and invest, leading to higher retention and viral growth.</li>
+                                <li><strong class="text-foreground/90">U_RSTR:</strong> The utility of our token is deeply integrated into every transaction, from funding a movie to tipping a creator, making it an indispensable part of the economy.</li>
+                            </ul>
+                            <p class="font-semibold mt-2">ReelStar's value is multi-dimensional. We are not just capturing attention; we are creating a self-sustaining digital nation with a robust, scalable, and defensible economy. This is why our potential valuation dwarfs that of platforms built on the models of the past. We are building heritage.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-section="true" id="orbit" class="scroll-mt-20 rounded-lg border bg-card text-card-foreground shadow-sm bg-card/70 backdrop-blur-sm border-primary/20">
+                <div class="flex flex-col space-y-1.5 p-6">
+                    <h3 class="text-2xl font-semibold leading-none tracking-tight font-sans">The ReelStar Orbit: Ecosystem Blueprint</h3>
+                    <p class="text-sm text-muted-foreground">This is not a social media platform with features bolted on. It's a self-sustaining universe, engineered from the core to be light years ahead of legacy systems. Every component feeds into the next, creating a powerful, inescapable gravity of value for every user.</p>
+                </div>
+                <div class="p-6 pt-0">
+                    <!-- ReelstarOrbitChart Component -->
+                </div>
+            </div>
+            <div data-section="true" id="architecture" class="scroll-mt-20 rounded-lg border bg-card text-card-foreground shadow-sm bg-card/70 backdrop-blur-sm border-primary/20">
+                <div class="flex flex-col space-y-1.5 p-6">
+                    <h3 class="text-2xl font-semibold leading-none tracking-tight font-sans">ReelStar Architecture: The Blueprint for Dominance</h3>
+                    <p class="text-sm text-muted-foreground">A top-down view of the integrated systems that give ReelStar an unassailable 24-month head start.</p>
+                </div>
+                <div class="p-4 sm:p-6 font-sans">
+                    <div class="space-y-8">
+                        <!-- The Genesis Node -->
+                        <div class="flex flex-col items-center">
+                            <div class="p-4 rounded-lg border bg-background text-center shadow-lg">
+                                <h4 class="font-bold text-lg">THE GENESIS: Founder's Vision</h4>
+                                <p class="text-sm text-muted-foreground mt-1">"Social AI allows for tokenized influence. A new asset class altogether."</p>
+                            </div>
+                            <div class="w-px h-8 bg-border"></div>
+                        </div>
+
+                        <!-- Core IP & Tech Stack Section -->
+                        <div class="flex flex-col items-center">
+                            <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 p-4 border rounded-lg bg-background/30">
+                                <!-- Core IP -->
+                                <div class="space-y-4">
+                                    <h4 class="font-bold text-lg">THE CORE IP: The 'Stand-Alone' Effect</h4>
+                                    <div class="space-y-3 pl-4 border-l-2 border-primary/50 ml-3">
+                                        <div>
+                                            <h5 class="font-semibold">Reelstar AI Engine</h5>
+                                            <p class="text-sm text-muted-foreground">Orchestrates Google GenAI to turn ideas into market-ready micro content assets.</p>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-semibold">The Sentient Feed™</h5>
+                                            <p class="text-sm text-muted-foreground">Emotionally-aware feed that co-creates the user experience in real-time.</p>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-semibold">The Quantum Loop™</h5>
+                                            <p class="text-sm text-muted-foreground">A revolutionary interface for multi-layered content interaction and remixing.</p>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-semibold">Frictionless Economy</h5>
+                                            <p class="text-sm text-muted-foreground">Integrated Wallet, Escrow, and direct monetization tools eliminate middlemen.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Tech Stack -->
+                                <div class="space-y-4">
+                                    <h4 class="font-bold text-lg">THE TECHNOLOGY: Hyper-Scalable Stack</h4>
+                                     <div class="space-y-3 pl-4 border-l-2 border-primary/50 ml-3">
+                                        <div>
+                                            <h5 class="font-semibold">Next.js & Vercel</h5>
+                                            <p class="text-sm text-muted-foreground">Globally distributed, serverless architecture for unmatched speed and reliability.</p>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-semibold">Firebase Genkit</h5>
+                                            <p class="text-sm text-muted-foreground">Robust, production-ready framework for managing complex AI flows and tool use.</p>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-semibold">Google Cloud & AI</h5>
+                                            <p class="text-sm text-muted-foreground">Leveraging state-of-the-art AI models for content generation, built on a secure cloud foundation.</p>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-semibold">Tokenized Blockchain</h5>
+                                            <p class="text-sm text-muted-foreground">Ethereum or Solana for our native RSTR token, ensuring security and interoperability.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="w-px h-8 bg-border"></div>
+                        </div>
+
+                        <!-- Platform & Economy Section -->
+                        <div class="flex flex-col items-center">
+                            <div class="p-4 rounded-lg border bg-background text-center shadow-lg w-full">
+                                <h4 class="font-bold text-lg">THE PLATFORM: A Self-Sustaining Ecosystem</h4>
+                                
+                                <!-- Flywheel -->
+                                <div class="flex flex-col sm:flex-row items-center justify-center gap-2 text-sm text-muted-foreground font-semibold">
+                                   <p class="p-2 rounded-md bg-muted">Creator Tools</p>
+                                   <p class="p-2 rounded-md bg-muted">High-Quality Content</p>
+                                   <p class="p-2 rounded-md bg-muted">Engaged Users</p>
+                                   <p class="p-2 rounded-md bg-muted">Data & Votes</p>
+                                </div>
+
+                                <div class="h-px w-full bg-border my-6"></div>
+
+                                <!-- Revenue Streams -->
+                                <h5 class="font-semibold text-foreground mb-4">Revenue Streams (For ReelStar & Creators)</h5>
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
+                                    <div class="p-2 rounded-lg bg-muted">
+                                        <p class="font-semibold mt-1">Creator Circles</p>
+                                        <p class="text-xs text-muted-foreground">10% Platform Fee</p>
+                                    </div>
+                                    <div class="p-2 rounded-lg bg-muted">
+                                        <p class="font-semibold mt-1">Campaign Deals</p>
+                                        <p class="text-xs text-muted-foreground">10% Service Fee</p>
+                                    </div>
+                                    <div class="p-2 rounded-lg bg-muted">
+                                        <p class="font-semibold mt-1">Auction Bids</p>
+                                        <p class="text-xs text-muted-foreground">2% Success Fee</p>
+                                    </div>
+                                     <div class="p-2 rounded-lg bg-muted">
+                                        <p class="font-semibold mt-1">Pro Subscriptions</p>
+                                        <p class="text-xs text-muted-foreground">Recurring Revenue</p>
+                                    </div>
+                                    <div class="p-2 rounded-lg bg-muted">
+                                        <p class="font-semibold mt-1">RSTR Token</p>
+                                        <p class="text-xs text-muted-foreground">Ecosystem Value</p>
+                                    </div>
+                                    <div class="p-2 rounded-lg bg-muted">
+                                        <p class="font-semibold mt-1">Escrow-Lockbox</p>
+                                        <p class="text-xs text-muted-foreground">2.5% Fee</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-px h-8 bg-border"></div>
+                        </div>
+
+                        <!-- The Outcome -->
+                        <div class="flex flex-col items-center">
+                             <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 p-4 border rounded-lg bg-gradient-to-tr from-primary/10 to-accent/10">
+                                <div class="text-center">
+                                    <h4 class="font-bold text-lg mt-2">THE ADVANTAGE: 24-Month Head Start</h4>
+                                    <p class="text-sm text-muted-foreground">Our working prototype puts the future in investors' hands today, creating a billion-dollar lead before competitors even understand the new landscape.</p>
+                                </div>
+                                <div class="text-center">
+                                    <h4 class="font-bold text-lg mt-2">THE PAYOFF: Generational Returns</h4>
+                                    <p class="text-sm text-muted-foreground">An asymmetric financial model designed for exponential growth, market dominance, and a path to a $100B+ valuation.</p>
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
